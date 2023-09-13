@@ -1,0 +1,112 @@
+<%- include('header') %>
+    <%- include('aside') %>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    <i class="fa fa-th"></i> Quản lý sản phẩm
+                </h1>
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <!-- Default box -->
+                <div class="box">
+                    <div class="box-body">
+
+                        <form action="" method="get" class="form-inline" role="form">
+
+                            <div class="form-group">
+                                <input class="form-control" name="name" placeholder="Input name">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                            <a href="/them-san-pham" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Thêm
+                                mới</a>
+                        </form>
+                        <hr>
+
+                        <div class="table-responsive">
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Name</th>
+                                        <th>Category</th>
+                                        <th>Price</th>
+                                        <th>Sale Price</th>
+                                        <th>Status</th>
+                                        <th>Image</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% data.map(function(prod, index) { %>
+                                        <tr>
+                                            <td scope="row">
+                                                <%= index + 1 %>
+                                            </td>
+                                            <td scope="row">
+                                                <%= prod.name %>
+                                            </td>
+                                            <td scope="row">
+                                                <%= prod.category_id %>
+                                            </td>
+                                            <td scope="row">
+                                                <%= prod.price %>
+                                            </td>
+                                            <td scope="row">
+                                                <%= prod.sale_price %>
+                                            </td>
+                                            <td scope="row">
+                                                <%= prod.status==0 ? 'Tạm ẩn' : 'Hiển thị' %>
+                                            </td>
+                                            <td>
+                                                <img src="uploads/<%= prod.image %>" width="60">
+                                            </td>
+                                            <td class="text-right">
+                                                <a href="/sua-danh-muc/<%= prod.id %>" class="btn btn-sm btn-primary"><i
+                                                        class="fa fa-edit"></i> Sửa</a>
+                                                <a href="/xoa-danh-muc/<%= prod.id %>" class="btn btn-sm btn-danger"><i
+                                                        class="fa fa-trash"></i> Xóa</a>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+
+                        <ul class="pagination">
+                            <li><a href="/danh-muc/?page=<%=_page > 1 ? _page-1 : 1 %>">&laquo;</a></li>
+                            <% for(i=1; i <=totalPage; i++) { %>
+                                <%if(_name) { %>
+                                    <li class="<%= _page == i ? 'active': '' %>"><a
+                                            href="/danh-muc/?page=<%=i%>&name=<%=_name%>">
+                                            <%= i %>
+                                        </a></li>
+                                    <% } else { %>
+                                        <li class="<%= _page == i ? 'active': '' %>"><a href="/danh-muc/?page=<%=i%>">
+                                                <%= i %>
+                                            </a></li>
+                                        <% } %>
+                                            <% } %>
+
+
+                                                <li><a
+                                                        href="/danh-muc/?page=<%=_page < totalPage ? _page+1: totalPage %>">&raquo;</a>
+                                                </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <!-- /.box -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <%- include('footer') %>

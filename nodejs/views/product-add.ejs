@@ -1,0 +1,94 @@
+<%- include('header') %>
+    <%- include('aside') %>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    <i class="fa fa-plus"></i> Thêm mới sản phẩm
+                </h1>
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <!-- Default box -->
+                <div class="box">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="">Tên sản phẩm</label>
+                                        <input type="text" class="form-control" placeholder="Input name" name="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Mô tả sản phẩm</label>
+                                        
+                                        <textarea name="content" class="form-control noi-dung" rows="10" required="required"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">Danh mục sản phẩm</label>
+                                        
+                                        <select name="category_id"  class="form-control">
+                                            <option value="">Chọn danh mục</option>
+                                            <% cats.map((cat) => { %>
+                                                <option value="<%= cat.id %>"><%= cat.name %></option>
+                                            <% }) %>
+                                            
+                                            
+                                        </select>
+                                        
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Giá sản phẩm</label>
+                                        <input type="text" class="form-control" name="price" placeholder="Input price" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Giá khuyến mãi</label>
+                                        <input type="text" class="form-control" name="sale_price" placeholder="Input sale_price" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Trạng thái danh mục</label>
+
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="status" value="1" checked="checked">
+                                                Hiển hị
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="status" value="0">
+                                                Tạm ẩn
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Ảnh đại diện</label>
+                                        <input type="file" class="form-control" name="image" onchange="showImage(this)"/>
+                                        <img src="" alt="" id="product-image" width="100%">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i> Lưu
+                                            lại</button>
+                                        <a href="/danh-muc" class="btn btn-default "><i class="fa fa-arrow-left"></i> Quay
+                                            lại</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                           
+                        </div>
+                    </form>
+
+
+                </div>
+                <!-- /.box -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <%- include('footer') %>
